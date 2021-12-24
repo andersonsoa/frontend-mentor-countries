@@ -10,6 +10,7 @@ export interface IRawCountry {
   population: number;
   region: string;
   capital?: string[];
+  cca3: string;
 }
 
 export interface ICountry {
@@ -18,4 +19,5 @@ export interface ICountry {
   population: string;
   region: string;
   capital: string;
+  code: string;
 }

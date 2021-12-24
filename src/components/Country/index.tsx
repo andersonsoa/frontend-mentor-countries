@@ -8,7 +8,7 @@ interface CountryProps {
 
 export const Country = ({ country }: CountryProps) => {
   return (
-    <NextLink href={`/${country.name}`}>
+    <NextLink href={`/${country.code}`}>
       <div className="dark:bg-gray-800 bg-gray-200 shadow shadow-dark rounded-md overflow-hidden cursor-pointer scale-90 hover:scale-100 transition-all">
         <NextImage layout="responsive" src={country.flag} alt={country.name} objectFit="cover" height={100} width={150} />
 

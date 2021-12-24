@@ -5,6 +5,7 @@ import { api } from "../services/api";
 const formatCountry = (country: ISingleRawCountry[]): ISingleCountry[] => {
   return country.map((country) => {
     return {
+      code: country.cca3,
       name: country.name.common,
       flag: country.flags.svg,
       population: new Intl.NumberFormat("en-us").format(country.population),
@@ -45,21 +46,23 @@ interface ISingleRawCountry extends IRawCountry {
   tld: string[];
 }
 
-export const useCountry = (name: string) => {
+export const useCountry = (cca3: string) => {
   const [country, setCountry] = useState<ISingleCountry>();
 
-  const getCountry = useCallback((name: string) => {
+  const getCountry = useCallback((cca3: string) => {
     api
-      .get<ISingleRawCountry[]>(`/name/${name}`)
+      .get<ISingleRawCountry[]>(`/alpha/${cca3}`)
       .then(({ data }) => {
-        setCountry(formatCountry(data)[0]);
+        const [country] = formatCountry(data);
+
+        setCountry(country);
       })
       .catch((e) => console.log(e));
   }, []);
 
   useEffect(() => {
-    getCountry(name);
-  }, [name, getCountry]);
+    getCountry(cca3);
+  }, [cca3, getCountry]);
 
   return { country };
 };

@@ -5,11 +5,11 @@ import { MdArrowBack } from "react-icons/md";
 import { useCountry } from "../hooks/useCountry";
 
 interface DetailProps {
-  name: string;
+  code: string;
 }
 
-export default function Detail({ name }: DetailProps) {
-  const { country } = useCountry(name);
+export default function Detail({ code }: DetailProps) {
+  const { country } = useCountry(code);
 
   return (
     <section className="max-w-7xl w-full mx-auto px-3 mt-14">
@@ -69,9 +69,11 @@ export default function Detail({ name }: DetailProps) {
               Border Countries:
               <div className="flex flex-wrap gap-2 mt-2">
                 {country.borderCountries?.map((border) => (
-                  <span key={border} className="inline-block text-gray-400 bg-gray-800 py-1 px-4 rounded-md shadow shadow-black">
-                    {border}
-                  </span>
+                  <NextLink key={border} href={`/${border}`}>
+                    <span className="inline-block text-gray-400 bg-gray-800 py-1 px-4 rounded-md shadow shadow-black cursor-pointer hover:brightness-110">
+                      {border}
+                    </span>
+                  </NextLink>
                 ))}
               </div>
             </div>
@@ -83,11 +85,11 @@ export default function Detail({ name }: DetailProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const name = params?.name as string;
+  const code = params?.code as string;
 
   return {
     props: {
-      name,
+      code,
     },
   };
 };

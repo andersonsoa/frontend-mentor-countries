@@ -5,6 +5,7 @@ import { api } from "../services/api";
 const formatCountry = (country: IRawCountry[]): ICountry[] => {
   return country.map((country) => {
     return {
+      code: country.cca3,
       name: country.name.common,
       flag: country.flags.svg,
       population: new Intl.NumberFormat("en-us").format(country.population),
