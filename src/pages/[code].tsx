@@ -3,6 +3,7 @@ import NextImage from "next/image";
 import { GetServerSideProps } from "next";
 import { MdArrowBack } from "react-icons/md";
 import { useCountry } from "../hooks/useCountry";
+import { Section } from "../components/Section";
 
 interface DetailProps {
   code: string;
@@ -12,7 +13,7 @@ export default function Detail({ code }: DetailProps) {
   const { country } = useCountry(code);
 
   return (
-    <section className="max-w-7xl w-full mx-auto px-3 mt-14">
+    <Section delay={0.5}>
       <div className="mb-10">
         <NextLink href="/">
           <button className="dark:bg-gray-800 bg-gray-200 flex items-center gap-2 px-6 py-2 rounded-md shadow-sm shadow-black">
@@ -80,7 +81,7 @@ export default function Detail({ code }: DetailProps) {
           </div>
         </div>
       )}
-    </section>
+    </Section>
   );
 }
 

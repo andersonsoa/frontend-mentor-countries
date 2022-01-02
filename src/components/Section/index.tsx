@@ -1,17 +1,18 @@
 import { motion } from "framer-motion";
 
-interface CountriesProps {
-  children: React.ReactNode;
+interface SectionProps {
   delay?: number;
+  className?: string;
 }
 
-export const Countries = ({ children, delay = 0.2 }: CountriesProps) => {
+export const Section: React.FC<SectionProps> = ({ children, delay = 0.2, className, ...rest }) => {
   return (
     <motion.div
       initial={{ y: 10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, delay }}
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-14 gap-2"
+      className={`max-w-7xl w-full mx-auto px-3 mt-14 ${className}`}
+      {...rest}
     >
       {children}
     </motion.div>
