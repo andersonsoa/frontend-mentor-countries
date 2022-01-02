@@ -5,12 +5,13 @@ import { AnimatePresence } from "framer-motion";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <AnimatePresence exitBeforeEnter initial={false}>
-      <div className="h-screen overflow-y-scroll scrollbar-hide">
-        <Header />
+    <div className="h-screen overflow-y-scroll scrollbar-hide">
+      <Header />
+
+      <AnimatePresence exitBeforeEnter initial={true}>
         <Component {...pageProps} />
-      </div>
-    </AnimatePresence>
+      </AnimatePresence>
+    </div>
   );
 }
 
